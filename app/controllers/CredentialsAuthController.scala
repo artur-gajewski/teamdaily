@@ -31,7 +31,7 @@ class CredentialsAuthController @Inject() (
    */
   def authenticate = Action.async { implicit request =>
     SignInForm.form.bindFromRequest.fold (
-      form => Future.successful(BadRequest(views.html.signIn(form))),
+      form => Future.successful(BadRequest(views.html.login(form))),
       credentials => (env.providers.get(CredentialsProvider.Credentials) match {
         case Some(p: CredentialsProvider) => p.authenticate(credentials)
         case _ => Future.failed(new AuthenticationException(s"Cannot find credentials provider"))

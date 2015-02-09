@@ -37,9 +37,9 @@ class SignUpController @Inject() (
    *
    * @return The result to display.
    */
-  def signUp = Action.async { implicit request =>
+  def register = Action.async { implicit request =>
     SignUpForm.form.bindFromRequest.fold (
-      form => Future.successful(BadRequest(views.html.signUp(form))),
+      form => Future.successful(BadRequest(views.html.register(form))),
       data => {
         val loginInfo = LoginInfo(CredentialsProvider.Credentials, data.email)
         val authInfo = passwordHasher.hash(data.password)

@@ -29,10 +29,10 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Cache
    *
    * @return The result to display.
    */
-  def signIn = UserAwareAction.async { implicit request =>
+  def login = UserAwareAction.async { implicit request =>
     request.identity match {
       case Some(user) => Future.successful(Redirect(routes.ApplicationController.index))
-      case None => Future.successful(Ok(views.html.signIn(SignInForm.form)))
+      case None => Future.successful(Ok(views.html.login(SignInForm.form)))
     }
   }
 
@@ -41,10 +41,10 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Cache
    *
    * @return The result to display.
    */
-  def signUp = UserAwareAction.async { implicit request =>
+  def register = UserAwareAction.async { implicit request =>
     request.identity match {
       case Some(user) => Future.successful(Redirect(routes.ApplicationController.index))
-      case None => Future.successful(Ok(views.html.signUp(SignUpForm.form)))
+      case None => Future.successful(Ok(views.html.register(SignUpForm.form)))
     }
   }
 
@@ -53,7 +53,7 @@ class ApplicationController @Inject() (implicit val env: Environment[User, Cache
    *
    * @return The result to display.
    */
-  def signOut = SecuredAction.async { implicit request =>
+  def logout = SecuredAction.async { implicit request =>
     env.eventBus.publish(LogoutEvent(request.identity, request, request2lang))
     Future.successful(env.authenticatorService.discard(Redirect(routes.ApplicationController.index)))
   }
