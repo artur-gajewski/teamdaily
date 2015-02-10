@@ -1,9 +1,9 @@
-DROP TABLE logininfo;
-DROP TABLE oauth1info;
-DROP TABLE oauth2info;
-DROP TABLE passwordinfo;
-DROP TABLE user;
-DROP TABLE userlogininfo;
+DROP TABLE IF EXISTS logininfo;
+DROP TABLE IF EXISTS oauth1info;
+DROP TABLE IF EXISTS oauth2info;
+DROP TABLE IF EXISTS passwordinfo;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS userlogininfo;
 
 CREATE TABLE logininfo (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
