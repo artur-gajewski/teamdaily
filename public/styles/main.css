@@ -12,6 +12,9 @@ h1 {
 fieldset {
     text-align: center;
 }
+legend {
+    border-bottom: 0px;
+}
 .social-providers,
 .sign-in-now {
     margin-top: 20px;
